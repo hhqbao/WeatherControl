@@ -1,1 +1,95 @@
-<div class="home-page">Hello</div>
+<div class="home-page">
+  <div class="nav">
+    <div class="row">
+      <div class="col-1-3"></div>
+      <div class="col-1-3">
+        <div class="nav__logo-box">
+          <img class="logo" src="assets/images/re-logo.svg" alt="Logo" />
+          <div class="title">Clean Energy News and Analysis</div>
+        </div>
+      </div>
+      <div class="col-1-3"></div>
+    </div>
+  </div>
+
+  <div class="home-page__container">
+    <h1 class="heading heading--1">Large Scale Solar Farm Map of Australia</h1>
+    <img
+      src="assets/images/Screen-Shot-2021-05-28-at-3.12.36-pm.webp"
+      alt="Home Page Banner"
+      class="home-page__banner"
+    />
+    <p class="paragraph">
+      This Large Scale Solar Farm Map of Australia includes all utility scale
+      solar projects of 10MW or above.
+    </p>
+    <p class="paragraph">
+      “Operating” includes those projects currently working while “Construction”
+      refers to those currently being built or awaiting commissioning or have
+      signed off-take contracts. All MW capacity measures are in AC rather than
+      DC.
+    </p>
+    <p class="paragraph">
+      See also our maps of <a href="#">battery storage</a>,
+      <a href="#">wind farms</a>, and <a href="#">offshore wind projects</a>.
+    </p>
+
+    <div class="form__group">
+      <label class="form__label">Filter By State</label>
+      <select
+        class="form__control"
+        [(ngModel)]="chosenState"
+        (change)="onFilterChange()"
+      >
+        <option [value]="''">All States</option>
+        <option [value]="'QLD'">Queensland</option>
+        <option [value]="'NSW'">New South Wales</option>
+        <option [value]="'SA'">South Australia</option>
+        <option [value]="'TAS'">Tasmania</option>
+        <option [value]="'VIC'">Victoria</option>
+        <option [value]="'WA'">Western Australia</option>
+      </select>
+    </div>
+
+    <div class="home-page__map">
+      <google-map height="100%" width="100%" [center]="center" [zoom]="zoom">
+        <map-marker
+          #marker="mapMarker"
+          *ngFor="let station of displayedStations"
+          [position]="station.markerPosition"
+          [title]="station.name"
+          [options]="station.markerOptions"
+          (mapClick)="openInfo(station)"
+        >
+          {{ bindMapMarker(marker, station) }}
+        </map-marker>
+        <map-info-window
+          [innerHTML]="selectedStation ? selectedStation.infoContent : ''"
+        >
+        </map-info-window>
+      </google-map>
+    </div>
+
+    <ul class="home-page__station-list">
+      <li
+        *ngFor="let station of displayedStations"
+        class="station"
+        (click)="openInfo(station)"
+      >
+        <div class="icon-box">
+          <img
+            src="assets/images/Solar-72-x-72.webp"
+            alt="Station Icon"
+            class="station__icon"
+          />
+        </div>
+        <div class="detail-box">
+          <div class="station__name">{{ station.name }}</div>
+          <div class="station__location">
+            {{ station.site }} {{ station.state }}, Australia
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

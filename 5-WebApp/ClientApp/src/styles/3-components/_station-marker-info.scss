@@ -1,0 +1,26 @@
+.station-marker-info {
+  border: solid 3px $blue-1;
+  border-radius: 1rem;
+  padding: 1rem;
+
+  .station-name {
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .station-details {
+    list-style: none;
+    margin-bottom: 1rem;
+
+    .detail {
+      &__label {
+        font-weight: 500;
+      }
+
+      &:not(:first-child) {
+        margin-top: 0.5rem;
+      }
+    }
+  }
+}

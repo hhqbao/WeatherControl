@@ -1,0 +1,22 @@
+.form {
+  &__group {
+    display: block;
+
+    &:not(:first-child) {
+      margin-top: 1rem;
+    }
+  }
+
+  &__label {
+    display: block;
+    font-weight: 500;
+  }
+
+  &__control {
+    border-radius: 0.5rem;
+    display: block;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    width: 100%;
+  }
+}

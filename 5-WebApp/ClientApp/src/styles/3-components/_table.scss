@@ -1,0 +1,24 @@
+.table {
+  border-collapse: collapse;
+  width: 100%;
+
+  &--1 {
+    text-align: left;
+
+    th,
+    td {
+      border: solid 1px $gray-2;
+      padding: 0.5rem;
+    }
+
+    thead {
+      tr {
+        background-color: $gray-1;
+
+        th {
+          color: $blue-1;
+        }
+      }
+    }
+  }
+}
