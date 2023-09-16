@@ -3,15 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1-Domain", "1-Domain\1-Domain.csproj", "{09E8C7F7-D786-444F-B137-727FE6B85553}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1-Domain", "1-Domain\1-Domain.csproj", "{09E8C7F7-D786-444F-B137-727FE6B85553}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2-Persistent", "2-Persistent\2-Persistent.csproj", "{0FE67133-3609-40C7-A5D8-8C29FBC8ED58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2-Persistent", "2-Persistent\2-Persistent.csproj", "{0FE67133-3609-40C7-A5D8-8C29FBC8ED58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3-Infrastructure", "3-Infrastructure\3-Infrastructure.csproj", "{E6EE5D1C-2669-4148-A9D3-FB3DF87B8FE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3-Infrastructure", "3-Infrastructure\3-Infrastructure.csproj", "{E6EE5D1C-2669-4148-A9D3-FB3DF87B8FE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4-Services", "4-Services\4-Services.csproj", "{7318C74A-B5B3-4F1C-B128-86A15839D1F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4-Services", "4-Services\4-Services.csproj", "{7318C74A-B5B3-4F1C-B128-86A15839D1F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5-WebApp", "5-WebApp\5-WebApp.csproj", "{B5DA3D32-52FB-444E-A367-5EA185FC647E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "5-WebApp", "5-WebApp\5-WebApp.csproj", "{B5DA3D32-52FB-444E-A367-5EA185FC647E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{298FDBCE-BFD1-4279-ACB0-E6C925AEC326}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

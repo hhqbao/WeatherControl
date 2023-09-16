@@ -20,4 +20,8 @@
     <ProjectReference Include="..\1-Domain\1-Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Configs\" />
+  </ItemGroup>
+
 </Project>
