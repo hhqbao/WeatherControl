@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace _5_WebApp.Models
+namespace _1_Domain.Models
 {
     public class ApplicationUser : IdentityUser
     {
-
     }
 }
