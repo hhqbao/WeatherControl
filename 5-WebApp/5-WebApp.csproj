@@ -13,13 +13,17 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="6.0.19" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.19" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.19" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.19" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.19" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.19" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.19" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.19" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.19" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.19" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,10 +38,6 @@
     <ProjectReference Include="..\2-Persistent\2-Persistent.csproj" />
     <ProjectReference Include="..\3-Infrastructure\3-Infrastructure.csproj" />
     <ProjectReference Include="..\4-Services\4-Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 
 import { routes } from './app.routes';
 import { HomePageComponent } from './4-pages/home-page/home-page.component';
+import { WeatherStationRepoService } from './2-services/weather-station-repo.service';
 
 @NgModule({
   declarations: [AppComponent, HomePageComponent],
@@ -16,7 +17,7 @@ import { HomePageComponent } from './4-pages/home-page/home-page.component';
     FormsModule,
     RouterModule.forRoot(routes),
   ],
-  providers: [],
+  providers: [WeatherStationRepoService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

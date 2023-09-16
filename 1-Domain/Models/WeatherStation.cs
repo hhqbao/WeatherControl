@@ -1,4 +1,6 @@
-﻿namespace _1_Domain.Models;
+﻿using System.Collections.ObjectModel;
+
+namespace _1_Domain.Models;
 
 public class WeatherStation
 {
@@ -15,4 +17,11 @@ public class WeatherStation
     public decimal Latitude { get; set; }
 
     public decimal Longitude { get; set; }
+
+    public virtual ICollection<WeatherRecord> WeatherRecords { get; set; }
+
+    public WeatherStation()
+    {
+        WeatherRecords = new Collection<WeatherRecord>();
+    }
 }

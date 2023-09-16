@@ -1,11 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { WeatherStationDto } from 'src/app/1-models/WeatherStationDto';
+import { WeatherStationRepoService } from 'src/app/2-services/weather-station-repo.service';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: 'home-page.component.html',
 })
 export class HomePageComponent implements OnInit {
-  constructor() {}
+  private stationRepo = inject(WeatherStationRepoService);
 
-  ngOnInit() {}
+  weatherStations: WeatherStationDto[];
+
+  async ngOnInit() {
+    this.weatherStations = await this.stationRepo.getAllAsync();
+
+    console.log(this.weatherStations);
+  }
 }

@@ -1,14 +1,21 @@
 using _1_Domain.Models;
 using _2_Persistent;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    {
+        options.UseLazyLoadingProxies();
+        options.UseSqlServer(connectionString);
+    }
+);
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -20,7 +27,14 @@ builder.Services.AddIdentityServer()
 builder.Services.AddAuthentication()
     .AddIdentityServerJwt();
 
-builder.Services.AddControllers();
+builder.Services.AddCors(p => p.AddPolicy("CorsApp",
+    setting => { setting.WithOrigins(builder.Configuration["AppSettings:Origins"]).AllowAnyMethod().AllowAnyHeader(); }));
+
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+    options.SerializerSettings.TypeNameHandling = TypeNameHandling.Auto;
+});
 
 var app = builder.Build();
 
@@ -29,24 +43,32 @@ if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
 }
-else
-{
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseCors("CorsApp");
 
 app.UseAuthentication();
-app.UseIdentityServer();
 app.UseAuthorization();
+
+var cultureInfo = new CultureInfo("en-US");
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
+app.UseExceptionHandler(builder => builder.Run(async context =>
+{
+    var error = context.Features.Get<IExceptionHandlerFeature>();
+    context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+    context.Response.Headers.Add("Access-Control-Expose-Header", "Application-Error");
+    context.Response.Headers.Add("Application-Error", error.Error.Message);
+
+    await context.Response.WriteAsync(error.Error.Message);
+}));
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
-app.MapRazorPages();
 
 app.MapFallbackToFile("index.html");
 

@@ -11,6 +11,7 @@ namespace _2_Persistent
     {
         public DbSet<WeatherStation> WeatherStations { get; set; }
         public DbSet<Variable> Variables { get; set; }
+        public DbSet<WeatherRecord> WeatherRecords { get; set; }
 
         public ApplicationDbContext(DbContextOptions options, IOptions<OperationalStoreOptions> operationalStoreOptions)
             : base(options, operationalStoreOptions)
@@ -21,6 +22,7 @@ namespace _2_Persistent
         {
             builder.ApplyConfiguration(new WeatherStationConfig());
             builder.ApplyConfiguration(new VariableConfig());
+            builder.ApplyConfiguration(new WeatherRecordConfig());
 
             base.OnModelCreating(builder);
         }
