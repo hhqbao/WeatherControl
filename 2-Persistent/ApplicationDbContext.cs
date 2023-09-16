@@ -10,6 +10,7 @@ namespace _2_Persistent
     public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {
         public DbSet<WeatherStation> WeatherStations { get; set; }
+        public DbSet<Variable> Variables { get; set; }
 
         public ApplicationDbContext(DbContextOptions options, IOptions<OperationalStoreOptions> operationalStoreOptions)
             : base(options, operationalStoreOptions)
@@ -19,6 +20,7 @@ namespace _2_Persistent
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new WeatherStationConfig());
+            builder.ApplyConfiguration(new VariableConfig());
 
             base.OnModelCreating(builder);
         }
